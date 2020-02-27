@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+    Delete book
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>Are you sure you want to delete "{{ book.name }}"?</p>
+        <input type="submit" value="Delete">
+    </form>
+{% endblock %}

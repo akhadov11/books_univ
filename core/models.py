@@ -1,9 +1,13 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Country(models.Model):
     """ a model representing Country entity"""
     name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = "Countries"
 
     def __str__(self):
         return f'{self.name}'
@@ -13,6 +17,9 @@ class City(models.Model):
     """ a model representing City entity"""
     name = models.CharField(max_length=255)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Cities"
 
     def __str__(self):
         return f'{self.name}'
@@ -50,3 +57,6 @@ class Book(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+    def get_absolute_url(self):
+        return reverse('book-detail', args=[str(self.id)])
