@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'core/base_books.html' %}
 {% block title %}
     Books detail
 {% endblock title %}
@@ -8,10 +8,10 @@
     <p>{{ book.author.name }}</p>
     <p>{{ book.price }}</p>
     <p>{{ book.pub_date }}</p>
-    <textarea aria-disabled="true">{{ book.description }}</textarea>
+    <textarea disabled>{{ book.description }}</textarea>
 
+    <P><a href="{% url 'books-list' %}">Return to the books list</a></P>
     <p><a href="{% url 'book-update' book.pk%}">Edit</a></p>
     <p><a href="{% url 'book-delete' book.pk%}">Delete Book</a></p>
-    <hr>
 
 {% endblock content %}
