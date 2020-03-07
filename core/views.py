@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -67,3 +68,12 @@ class GenreDetailView(generic.DetailView):
     model = Genre
     template_name = 'core/genre_detail.html'
     context_object_name = 'genre'
+
+
+class SignUpView(generic.CreateView):
+    """
+        class for signing up new users
+    """
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'core/signup.html'

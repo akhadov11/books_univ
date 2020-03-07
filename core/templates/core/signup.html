@@ -1,12 +1,14 @@
 {% extends 'core/base_books.html' %}
+
 {% block title %}
-    New book
+    Sign Up
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post">
+    <h2>Sign up</h2>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Save" class="btn btn-info">
+        <button class="btn btn-info" type="submit">Sign up</button>
     </form>
 {% endblock %}
