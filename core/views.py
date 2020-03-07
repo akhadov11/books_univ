@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -13,6 +14,16 @@ class BooksListView(generic.ListView):
     template_name = 'core/book_list.html'
     context_object_name = 'books'
     paginate_by = 4
+
+    def get_queryset(self):
+        books = Book.objects.all()
+        query = self.request.GET.get("q", "")
+        if query:
+            books = books.filter(
+                Q(name__icontains=query) |
+                Q(author__name__icontains=query)
+            )
+        return books
 
 
 class BookDetailView(generic.DetailView):

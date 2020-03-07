@@ -81,5 +81,3 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ("name", "price")
     date_hierarchy = "pub_date"
 
-
-admin.site.register(Country)
