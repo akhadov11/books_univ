@@ -28,7 +28,7 @@ class City(models.Model):
 class Author(models.Model):
     """ a model representing Author entity """
     name = models.CharField(max_length=255)
-    num_of_books = models.SmallIntegerField()
+    num_of_books = models.SmallIntegerField(blank=True, null=True)
     bio = models.TextField()
     city = models.ForeignKey(City, on_delete=models.PROTECT)
 
@@ -56,7 +56,7 @@ class Book(models.Model):
     price = models.SmallIntegerField()
     description = models.TextField(blank=True, null=True)
     pub_date = models.DateField(auto_now_add=True)
-    image = models.FileField()
+    image = models.FileField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'
