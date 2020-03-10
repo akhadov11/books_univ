@@ -1,0 +1,21 @@
+{% extends 'core/base_books.html' %}
+{% block title %}
+    Author`s book
+{% endblock title %}
+
+{% block content %}
+    <h1>Books by {{ author.name|title }} : </h1>
+
+    {% for book in author.book_set.all %}
+        <div class="card border-info mb-4 mt-3">
+            <div class="card-header border-info text-info text-center ">
+                {{ book.author.name }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ book.name }}</h5>
+                <p class="card-text">{{ book.description|truncatewords:15 }}</p>
+                <a href="{{ book.get_absolute_url }}" class="btn btn-outline-info">In detail</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

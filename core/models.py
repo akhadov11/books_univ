@@ -35,6 +35,9 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def get_absolute_url(self):
+        return reverse('author-detail', args=[str(self.id)])
+
 
 class Genre(models.Model):
     """ a model representing Genre entity """
@@ -63,3 +66,6 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
+
+    class Meta:
+        ordering = ["-pub_date", ]
