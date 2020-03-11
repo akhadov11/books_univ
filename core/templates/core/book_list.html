@@ -4,8 +4,9 @@
 {% endblock title %}
 
 {% block content %}
-
-    <a href="{% url 'book-create' %}">+ New book</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'book-create' %}">+ New book</a>
+    {% endif %}
 
     {% for book in books %}
 

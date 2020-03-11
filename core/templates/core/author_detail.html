@@ -4,7 +4,7 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Books by {{ author.name|title }} : </h1>
+    <h1>Books by {{ author.name|title }}<h2>({{ author.get_books_count }} book(s) at all)</h2></h1>
 
     {% for book in author.book_set.all %}
         <div class="card border-info mb-4 mt-3">

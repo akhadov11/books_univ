@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import generic
@@ -35,7 +36,7 @@ class BookDetailView(generic.DetailView):
     context_object_name = 'book'
 
 
-class BookCreateView(generic.CreateView):
+class BookCreateView(LoginRequiredMixin, generic.CreateView):
     """
         class for creating new books
     """
@@ -44,7 +45,7 @@ class BookCreateView(generic.CreateView):
     fields = ('name', 'author', 'price', 'description')
 
 
-class BookUpdateView(generic.UpdateView):
+class BookUpdateView(LoginRequiredMixin, generic.UpdateView):
     """
         class for updating book info
     """

@@ -38,7 +38,7 @@ class AuthorAdmin(admin.ModelAdmin):
     """
         class for representing Authors in admin panel
     """
-    list_display = ("id", "name", "city")
+    list_display = ("id", "name", "city", "get_books_count")
     list_display_links = ("name",)
     search_fields = ("name",)
     ordering = ("id", "name")

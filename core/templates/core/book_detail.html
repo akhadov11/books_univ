@@ -11,7 +11,11 @@
     <textarea disabled>{{ book.description }}</textarea>
 
     <P><a href="{% url 'books-list' %}">Return to the books list</a></P>
-    <p><a href="{% url 'book-update' book.pk%}">Edit</a></p>
-    <p><a href="{% url 'book-delete' book.pk%}">Delete Book</a></p>
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'book-update' book.pk %}">Edit</a></p>
+        <p><a href="{% url 'book-delete' book.pk %}">Delete Book</a></p>
+    {% else %}
+        <p>You should <a href="{% url "login" %}">login</a> to manipulate with this book</p>
+    {% endif %}
 
 {% endblock content %}

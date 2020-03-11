@@ -38,6 +38,11 @@ class Author(models.Model):
     def get_absolute_url(self):
         return reverse('author-detail', args=[str(self.id)])
 
+    def get_books_count(self):
+        return f"{self.book_set.all().count()}"
+
+    get_books_count.short_description = "Books count"
+
 
 class Genre(models.Model):
     """ a model representing Genre entity """
