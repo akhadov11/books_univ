@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import generic
+from hitcount.views import HitCountDetailView
 
 from core.models import Book, Genre, Author
 
@@ -27,13 +28,14 @@ class BooksListView(generic.ListView):
         return books
 
 
-class BookDetailView(generic.DetailView):
+class BookDetailView(HitCountDetailView):
     """
         class representing detail info about a book
     """
     model = Book
     template_name = 'core/book_detail.html'
     context_object_name = 'book'
+    count_hit = True
 
 
 class BookCreateView(LoginRequiredMixin, generic.CreateView):

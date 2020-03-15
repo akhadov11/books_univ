@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
+from hitcount.models import HitCount
 
 
 class Country(models.Model):
@@ -65,6 +67,8 @@ class Book(models.Model):
     description = models.TextField(blank=True, null=True)
     pub_date = models.DateField(auto_now_add=True)
     image = models.FileField(blank=True, null=True)
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',
+                                        related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return f'{self.name}'
