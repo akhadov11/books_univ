@@ -4,7 +4,7 @@
 {% endblock title %}
 
 {% block content %}
-
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
     {% for author in authors %}
         <h1><a href="{{ author.get_absolute_url }}">{{ author.name }}</a> from {{ author.city }}</h1>
         <p>{{ author.bio }}</p>
@@ -28,5 +28,41 @@
         {% endif %}
     </span>
     </div>
+    <div id="myChart"></div>
+
+    <script>
+
+        state = {
+            "items": [],
+            "values": [],
+        };
+        {% for author in authors %}
+            state.items.push("{{ author.name}}");
+            state.values.push({{ author.get_books_count }});
+        {% endfor %}
+        buildChart();
+
+        function buildChart() {
+            let chartData = {
+                "type": "bar",
+                "scale-x": {
+                    "values": state.items,
+                    label: {text: 'Author name'}
+                },
+                "series": [
+                    {
+                        "values": state.values
+                    }
+                ],
+                scaleY: {
+                    label: {text: 'Number of books'}
+                },
+            };
+            zingchart.render({
+                id: 'myChart',
+                data: chartData
+            });
+        }
+    </script>
 
 {% endblock content %}
